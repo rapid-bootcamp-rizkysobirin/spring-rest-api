@@ -17,7 +17,11 @@ import javax.persistence.*;
 @Table( name = "product_tab")
 public class ProductEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)// auto gk perlu tambah tabel tambahan klo sequence butuh tabel tambahan
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)// auto gk perlu tambah tabel tambahan klo sequence butuh tabel tambahan
+    @TableGenerator(name = "id_generator", table = "sequence_tab",
+            pkColumnName = "gen_name", valueColumnName = "gen_value",
+            pkColumnValue="product_id", initialValue=0, allocationSize=0)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
     private Integer id; // ini alasan kenapa product repo Integer
     //untuk mrndefinisikan kolom
     @Column(name = "product_code", length = 20, nullable = false)
