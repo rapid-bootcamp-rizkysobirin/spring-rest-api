@@ -13,20 +13,19 @@ import org.springframework.context.annotation.Bean;
 public class ProductModel {
     private int id;
     private String code;
-    private  String name;
+    private String name;
     private Double price;
     private Integer categoryId;
     private String categoryName;
 
-    public ProductModel(ProductEntity entity){
-        //copy entiti ini ke...
-        /*
-        this.id = entity.getId();
-        this.name = entity.getName();
-        this.price = entity.getPrice();
-        this.categoryId = entity.getCategoryId();
-        this.categoryName = entity.getCategory().getName();
-         */
+    public ProductModel(ProductEntity entity){// ->ini
+        //copy entiti ini ke... sini
+
+//        this.id = entity.getId();
+//        this.name = entity.getName();
+//        this.price = entity.getPrice();
+//        this.categoryId = entity.getCategoryId();
+//        this.categoryName = entity.getCategory().getName();
 
         BeanUtils.copyProperties(entity, this);
         if(entity.getCategory() != null) {

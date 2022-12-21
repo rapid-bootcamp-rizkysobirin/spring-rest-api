@@ -29,13 +29,13 @@ public class ProductController {
 //                new ProductModel(3,"Kopi 3",3000.4)
 //        );
 //    }
-@GetMapping
-public ResponseEntity<Object> get(){
-    List<ProductModel> result = service.getAll();
-    return ResponseEntity.ok().body(
-            new ResponseModel(200,"SUCCESS", result)
-    );
-}
+    @GetMapping
+    public ResponseEntity<Object> get(){
+        List<ProductModel> result = service.getAll();
+        return ResponseEntity.ok().body(
+                new ResponseModel(200,"SUCCESS", result)
+        );
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable("id") Integer id){

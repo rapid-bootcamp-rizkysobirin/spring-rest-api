@@ -14,21 +14,25 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Category_tab")
+@Table(name = "category_tab")
 public class CategoryEntity {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    @TableGenerator(name = "id_generator", table = "sequence_tab",
-            pkColumnName = "gen_name", valueColumnName = "gen_value",
-            pkColumnValue="category_id", initialValue=0, allocationSize=0)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    @Column(name = "category_code" , length = 20, nullable = false)
+//    @TableGenerator(name = "id_generator", table = "sequence_tab",
+//            pkColumnName = "gen_name", valueColumnName = "gen_value",
+//            pkColumnValue="category_id", initialValue=0, allocationSize=0)
+//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
+
+    @Column(name = "category_code", length = 20, nullable = false)
     private String code;
-    @Column(name = "category_ name", length = 100,nullable = false)
+
+    @Column(name = "category_name", length = 100, nullable = false)
     private String name;
+
     @OneToMany(mappedBy = "category")
     private Set<ProductEntity> products = new HashSet<>();
+
     public CategoryEntity(CategoryModel model) {
         BeanUtils.copyProperties(model, this);
     }

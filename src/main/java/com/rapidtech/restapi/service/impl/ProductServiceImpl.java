@@ -25,9 +25,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductModel> getAll() {
-        //===ProductModel== sama dengan product model diberi parameter entity
+                                               //ProductModel ini -> sama dengan ProductModel diberi parameter entity
         return this.repo.findAll().stream().map(ProductModel::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()); //karena list maka di collect
         //cara sebenarnya
 //        return this.repo.findAll().stream().map(item->new ProductModel(item))
 //                .collect(Collectors.toList());
@@ -44,6 +44,7 @@ public class ProductServiceImpl implements ProductService {
         if (result.isEmpty()){
             return Optional.empty();
         }else{//bisa gini
+            //untuk dapatkan entity harus akei Optional
             return Optional.of(new ProductModel(result.get()));
         }
          */
@@ -57,9 +58,9 @@ public class ProductServiceImpl implements ProductService {
             return Optional.empty();
         }
 //        kita akan mengopi satu2
-        ProductEntity entity =  new ProductEntity(model);
+        ProductEntity entity =  new ProductEntity(model); //ini diisi dengan paarameter entity yg dipanggi dr productentity
         //biasanya gini -> diganti parameter new product model
-//        entity.setId(model.getId());
+//        entity.setId(model.getId()); //--dan 3 baris ini diganti dengan BeanUtils.copyProperties(model,this); atau public ProductEntity(ProductModel model)  di product entity
 //        entity.setName(model.getCode());
 //        entity.setCode(model.getName());
         try{//karena ada kemungkinan error
@@ -77,6 +78,7 @@ public class ProductServiceImpl implements ProductService {
         if (id == 0) {
             return Optional.empty();
         }
+        //kalau findbyid
         ProductEntity result = this.repo.findById(id).orElse(null);
         if (result == null){
             return Optional.empty();

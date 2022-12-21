@@ -12,16 +12,16 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table( name = "product_tab")
 @AllArgsConstructor
 @NoArgsConstructor //untuk empty constructor
+@Table( name = "product_tab")
 public class ProductEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)// auto gk perlu tambah tabel tambahan klo sequence butuh tabel tambahan
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)// auto gk perlu tambah tabel tambahan klo sequence butuh tabel tambahan
+    private Integer id; // ini alasan kenapa product repo Integer
     //untuk mrndefinisikan kolom
     @Column(name = "product_code", length = 20, nullable = false)
-    private String Code;
+    private String code;
     @Column(name = "product_name", length = 100, nullable = false)//kalau mau beda nama colom dan field nya
     private String name;
     @Column(name = "product_price")
@@ -30,14 +30,18 @@ public class ProductEntity {
     private int categoryId;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", insertable = false,updatable = false)
-    private CategoryEntity category;
+    private CategoryEntity category;// yg nantinya dipanggil di categoryEntity
 
     public ProductEntity(ProductModel model) {
-//        this.code = model.getCode();
+//        this.code = model.getCode(); //-->gini
 //        this.name = model.getName();
 //        this.price = model.getPrice();
 //        this.categoryId = model.getCategoryId();
 //        diganti pakai ini
+        // alamat: model , tujuan: id/this
         BeanUtils.copyProperties(model,this);
     }
 }
+
+
+

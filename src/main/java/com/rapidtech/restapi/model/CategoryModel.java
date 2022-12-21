@@ -10,11 +10,12 @@ import org.springframework.beans.BeanUtils;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryModel {
-
     private int id;
     private String code;
     private String name;
+
     public CategoryModel(CategoryEntity entity) {
         BeanUtils.copyProperties(entity, this);
     }
 }
+
