@@ -11,12 +11,13 @@ import org.springframework.context.annotation.Bean;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductModel {
-    private int id;
+    private Long id;
     private String code;
     private String name;
     private Double price;
     private Integer categoryId;
     private String categoryName;
+    private Long supplierId;
 
     public ProductModel(ProductEntity entity){// ->ini
         //copy entiti ini ke... sini
@@ -32,7 +33,7 @@ public class ProductModel {
             this.categoryName = entity.getCategory().getName();
         }
     }
-    public ProductModel(int id, String name, Double price) {
+    public ProductModel(Long id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;

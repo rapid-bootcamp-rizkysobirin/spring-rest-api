@@ -1,5 +1,6 @@
 package com.rapidtech.restapi.entity;
-import com.rapidtech.restapi.model.CustomerModel;
+
+import com.rapidtech.restapi.model.EmployeeModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,19 +15,17 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "customer_tab")
-
-public class CustomerEntity {
+@Table(name = "employee_tab")
+public class EmployeeEntity {
     @Id
-    @TableGenerator(name = "id_generator", table = "sequence_tab",
+    @TableGenerator(name = "employee_id_generator", table = "sequence_tab",
             pkColumnName = "gen_name", valueColumnName = "gen_value",
-            pkColumnValue="customer_id", initialValue=0, allocationSize=0)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
+            pkColumnValue="employee_id", initialValue=0, allocationSize=0)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "employee_id_generator")
     private Long id;
 
-    @Column(name = "customer_name", length = 100)
-    private String name;
-
+    @Column(name = "employee_name", length = 100, nullable = false)
+    private String employeeName;
     @Column(name = "address", length = 200)
     private String address;
 
@@ -49,10 +48,14 @@ public class CustomerEntity {
     @Column(name = "postal_code", length = 10)
     private String postalCode;
 
-    @OneToMany(mappedBy = "customer")
-    private Set<PurchaseOrderEntity> purchaseOrder = new HashSet<>();
+    @Column(name = "notes", length = 250)
+    private String notes;
 
-    public CustomerEntity(CustomerModel model) {
-        BeanUtils.copyProperties(model, this);
+    @OneToMany(mappedBy = "employee")
+    private Set<PurchaseOrderEntity> purchaseOrders = new HashSet<>();
+
+    public EmployeeEntity(EmployeeModel model){
+        BeanUtils.copyProperties(model,this);
     }
 }
+

@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -22,7 +24,7 @@ public class ProductEntity {
             pkColumnName = "gen_name", valueColumnName = "gen_value",
             pkColumnValue="product_id", initialValue=0, allocationSize=0)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
-    private Integer id; // ini alasan kenapa product repo Integer
+    private Long id; // ini alasan kenapa product repo Integer
     //untuk mrndefinisikan kolom
     @Column(name = "product_code", length = 20, nullable = false)
     private String code;
@@ -35,6 +37,13 @@ public class ProductEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", insertable = false,updatable = false)
     private CategoryEntity category;// yg nantinya dipanggil di categoryEntity
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "supplier_id", insertable = false, updatable = false)
+    private SupplierEntity supplier;
+
+    @OneToMany(mappedBy = "product")
+    private Set<PurchaseOrderDetailEntity> purchaseOrderDetails = new HashSet<>();
 
     public ProductEntity(ProductModel model) {
 //        this.code = model.getCode(); //-->gini
