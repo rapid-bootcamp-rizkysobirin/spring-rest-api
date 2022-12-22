@@ -49,20 +49,21 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
     @Override
     public Optional<PurchaseOrderModel> save(PurchaseOrderModel model) {
-        if (model == null || model.getDetails().isEmpty()) {
-            return Optional.empty();
-        }
-
-        PurchaseOrderEntity entity = new PurchaseOrderEntity(model);
-        entity.addDetailList(model.getDetails());
-
-        try {
-            this.orderRepo.save(entity);
-            return Optional.of(model);
-        } catch (Exception e) {
-            log.error("Purchase Order save is failed, error: {}", e.getMessage());
-            return Optional.empty();
-        }
+//        if (model == null || model.getDetails().isEmpty()) {
+//            return Optional.empty();
+//        }
+//
+//        PurchaseOrderEntity entity = new PurchaseOrderEntity(model);
+//        entity.addDetailList(model.getDetails());
+//
+//        try {
+//            this.orderRepo.save(entity);
+//            return Optional.of(model);
+//        } catch (Exception e) {
+//            log.error("Purchase Order save is failed, error: {}", e.getMessage());
+//            return Optional.empty();
+//        }
+        return null;
     }
 
     @Override

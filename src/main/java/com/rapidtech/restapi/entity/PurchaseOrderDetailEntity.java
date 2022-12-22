@@ -44,9 +44,9 @@ public class PurchaseOrderDetailEntity {
     private PurchaseOrderDetailEntity purchaseOrder;
 
     public PurchaseOrderDetailEntity(PurchaseOrderDetailModel model) {
-        this.productId = model.getProductId();
-        this.quantity = model.getQuantity();
-        this.price = model.getPrice();
-        this.subAmount = model.getPrice() * model.getQuantity();
+//        this.productId = model.getProductId();
+//        this.quantity = model.getQuantity();
+//        this.price = model.getPrice();
+//        this.subAmount = model.getPrice() * model.getQuantity();
     }
 }

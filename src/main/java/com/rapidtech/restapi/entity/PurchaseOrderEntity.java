@@ -72,7 +72,7 @@ public class PurchaseOrderEntity {
 
     public void addDetail(PurchaseOrderDetailEntity detailEntity){
         this.purchaseOrderDetails.add(detailEntity);
-        detailEntity.setPurchaseOrder(this);
+//        detailEntity.setPurchaseOrder(this);
     }
 
     public void addDetailList(List<PurchaseOrderDetailModel> details){
